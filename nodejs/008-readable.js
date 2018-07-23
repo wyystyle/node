@@ -4,19 +4,27 @@ class Rader extends Readable{
 		super();
 		this.index=0;
 	}
-	_rade(){
+	_read(){
 
 		this.index++;
 		if(this.index>5){
 			this.push(null);
 		}else{
-			this.push(this.index);
+			let str= ''+ this.index;
+			let buf = Buffer.from(str);
+			this.push(buf);
 		}
 	}
 }
 const rs = new Rader();
+let body= '';
 rs.on('data',(chunk)=>{
-	console.log(chunk.toString())
+	// console.log(chunk.toString())
+	body+=chunk;
+	// console.log(body)
 });
-rs.end();
-stream.pipe()
+rs.on('end',()=>{
+	console.log(body);
+	console.log('end...')
+});
+// stream.pipe()
