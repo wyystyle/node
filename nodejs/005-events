@@ -1,0 +1,17 @@
+
+const EventEmitter= require('events'); //events 返回一个类
+
+class MyEmitter extends EventEmitter{
+
+}; //extends继承这个类
+
+myEmitter = new MyEmitter; //给这个类实例化一个对象
+
+myEmitter.setMaxListeners(10);//事件监听的最大个数
+
+myEmitter.on('text',()=>{
+	console.log('text....')
+});// 事件的监听
+
+myEmitter.emit('text'); //时间的触发；
+
