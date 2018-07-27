@@ -126,3 +126,9 @@ let remove=(id,callback)=>{
 		console.log('remove file error::',err)
 	}
 })*/
+
+module.exports={
+	get:get,
+	add:add,
+	remove:remove
+}
