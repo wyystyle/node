@@ -17,10 +17,6 @@ const server = http.createServer((req,res)=>{
             
             let html = swig.compileFile(__dirname + '/test/index.html');
             var data = data;
-
-
-
-
                     if(!err){
                         res.setHeader('Content-Type', 'text/html;charset=UTF-8');
                         res.end(html); 

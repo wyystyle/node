@@ -1,0 +1,17 @@
+{
+  "name": "nodejs",
+  "version": "1.0.0",
+  "main": "001-test.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "prefixed-uuid": "^1.0.0",
+    "swig": "^1.4.2"
+  },
+  "devDependencies": {},
+  "description": ""
+}

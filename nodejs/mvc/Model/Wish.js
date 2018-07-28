@@ -1,9 +1,10 @@
 const fs = require('fs');
 const uuidv1 = require('uuid/v1');
 const path = require('path');
+// const stringify = require('stringify');
  
 
-const filePath = path.normalize(__dirname + '/../data/data.json');
+const filePath = path.normalize(__dirname + '/../data/wish.json');
 
 let getRandom = (min,max)=> {   
     return Math.round(min + (max-min)*Math.random());
