@@ -9,9 +9,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "mongodb": "^3.1.1",
     "prefixed-uuid": "^1.0.0",
     "swig": "^1.4.2"
   },
   "devDependencies": {},
+  "directories": {
+    "test": "test"
+  },
   "description": ""
 }

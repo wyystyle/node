@@ -3,12 +3,14 @@
   "version": "1.0.0",
   "main": "001-test.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "mongoose": "^5.2.6",
     "prefixed-uuid": "^1.0.0",
     "swig": "^1.4.2"
   },

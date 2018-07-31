@@ -7,10 +7,19 @@ const querystring = require('querystring');
 const swig = require('swig');
 
 const server = http.createServer((req,res)=>{
-
+    
+    console.log("req.url:::",req.url);
+    
     let pathname = url.parse(req.url,true).pathname;
-    console.log(pathname);
-    if(pathname.startsWith('/static')){
+
+    //约定: 
+    //1.请求路径以 /static/开始的都是静态资源
+    //           /static/css/index.css
+    //2.路由的请求格式: /Controller/action/arg1/arg2.....
+    //               /Wish/index/
+
+    if(pathname.startsWith('/static/')){//处理静态资源
+
         let filePath = path.normalize(__dirname + pathname);
         let fileExtName = path.extname(filePath);
 
@@ -24,8 +33,8 @@ const server = http.createServer((req,res)=>{
                 res.statusCode = 404;
                 res.end('<h1>页面走丢了。。。。</h1>')
             }
-        });   
-    }else{
+        });
+    }else{//处理动态路由
         let paths = pathname.split('/');
         let controller = paths[1] || 'Wish';
         let action = paths[2] || 'index';
@@ -44,6 +53,7 @@ const server = http.createServer((req,res)=>{
         if(model[action]){
             model[action].apply(null,[req,res].concat(args));
         }
+
     }
 });
 
