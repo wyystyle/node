@@ -1,4 +1,4 @@
-const wish = require('../Model/Wish.js');
+const wish = require('./Model/Wish.js');
 const swig = require('swig');
 
 class Wish{

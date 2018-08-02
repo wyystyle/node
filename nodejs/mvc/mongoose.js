@@ -4,7 +4,7 @@ mongoose.connect('mongodb://localhost:27017/wish',{ useNewUrlParser: true });
 const db = mongoose.connection;
 
 /*db.on('error',(err)=>{
-	throw error
+	throw err
 });*/
 
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -16,6 +16,7 @@ db.once('open',()=>{
 		sex:String
 	});
 	const user = mongoose.model('user',userSchema);
+	console.log(user)
 
 	/*const users = new user({name:"Kit",age:30,sex:"male"})
 
@@ -28,12 +29,12 @@ db.once('open',()=>{
 		}
 	})*/
 
-	user.find({age:30},(err,result)=>{
-		if(!err){
-			console.log(result)
-		}else{
-			console.log(err)
-		}
-	})
+	// user.find({age:30},(err,result)=>{
+	// 	if(!err){
+	// 		console.log(result)
+	// 	}else{
+	// 		console.log(err)
+	// 	}
+	// })
 
 })

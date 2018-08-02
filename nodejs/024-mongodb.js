@@ -48,7 +48,7 @@ MongoClient.connect(url,{useNewUrlParser: true},function(err, client) {
  // 	}
  // 	client.close();
  // })
-
+/*
 col.deleteOne({},function(err,result){
 	if(!err){
 		console.log(result)
@@ -56,7 +56,7 @@ col.deleteOne({},function(err,result){
 		console.log(err)
 	}
 	client.close();
-}) 
+}) */
 
 
 });
