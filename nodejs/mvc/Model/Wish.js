@@ -1,79 +1,76 @@
 const fs = require('fs');
 const uuidv1 = require('uuid/v1');
-const path = require('path');
 const MongoClient = require('mongodb').MongoClient;
-const assert = require('assert');
-
 
 const url = 'mongodb://localhost:27017';
-const dbName = 'wish';
+const dbName = 'kuazhu';
 
 let getRandom = (min,max)=> {   
     return Math.round(min + (max-min)*Math.random());
-
-}
-let getDb=(callback)=>{
-    MongoClient.connect(url,{useNewUrlParser: true},function(err, client){
-    assert.equal(null, err);
-    console.log("Connected successfully to server");
-    const db = client.db(dbName);
-    callback(db,client);
- }
 }
 
-  
-const colorArr = ['#f10','#ff0','#ff5600','#0f1'];
+let getDB = (callback)=>{
 
-let add = (options,callback)=>{
-    const col = db.collection('user');
-    options._id = uuidv1();
-    options.color = colorArr[getRandom(0,colorArr.length-1)];
+    MongoClient.connect(url, { useNewUrlParser: true },function(err, client) {
+      
+      console.log("Connected successfully to server");
 
-    getDb(function(db,client){
-       
-        col.insertMany({options._id,options.color},function(err,result){
-            if(!err){
-                callback(null,result);
-            }else{
-                callback(err);
-            }
+      //如果没有创建,返回db对象
+      const db = client.db(dbName);
 
-            client.close()
-        })
+      callback(db,client)
 
     })
 }
 
+
+const colorArr = ['#f10','#ff0','#ff5600','#0f1'];
+
+let add = (options,callback)=>{
+    getDB((db,client)=>{
+        const col = db.collection('wish');
+        options._id = uuidv1();
+        options.color = colorArr[getRandom(0,colorArr.length-1)];   
+        col.insertOne(options,function(err,result){
+            if(!err){
+                callback(null,options);
+            }else{
+                callback(err);
+            }
+            client.close();
+        })
+
+    });
+}
+
 let get = (callback)=>{
-    const col = db.collection('user');
-    getDb(function(options){
 
-
-        col.find({options._id},function(err,docs){
+    getDB((db,client)=>{
+        const col = db.collection('wish');
+        col.find({}).toArray(function(err,docs){
             if(!err){
                 callback(null,docs)
             }else{
                 callback(err);
             }
-            client.close()
-        })
-
-
+            client.close();
+        });     
     })
 }
 
-let remove = (_id,callback)=>{
-    const col = db.collection('user');
-    getDb(function(db,client){
-        col.updateOne({},function(err,result){
-        if(!err){
-            callback(null)
-        }else{
-            callback(err)
-        }
+let remove = (id,callback)=>{
+
+    getDB((db,client)=>{
+        const col = db.collection('wish');
+        col.deleteOne({_id:id},function(err,docs){
+            if(!err){
+                callback(null)
+            }else{
+                callback(err);
+            }
             client.close();
-        })
-    })
+        });     
+    })  
 }
 
 module.exports = {
