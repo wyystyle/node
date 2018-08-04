@@ -15,8 +15,9 @@
 	$(function(){
 		$('#get').on("click",function(){
 			$.ajax({
-				url:'/abc',
-				type:'get'
+				url:'/user',
+				type:'get',
+
 			})
 			.done(function(data){
 				console.log(data)
@@ -24,8 +25,9 @@
 		})
 		$('#post').on("click",function(){
 			$.ajax({
-				url:'/abc',
-				type:'post'
+				url:'/user',
+				type:'post',
+				data:{"name":'Tom',"age":18}
 			})
 			.done(function(data){
 				console.log(data)
@@ -33,7 +35,7 @@
 		})
 		$('#put').on("click",function(){
 			$.ajax({
-				url:'/abc',
+				url:'/user',
 				type:'put'
 			})
 			.done(function(data){
@@ -42,7 +44,7 @@
 		})
 		$('#delete').on("click",function(){
 			$.ajax({
-				url:'/abc',
+				url:'/user',
 				type:'delete'
 			})
 			.done(function(data){

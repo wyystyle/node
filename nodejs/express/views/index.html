@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>{{ title }}</title>
+</head>
+<body>
+	hallow zzz
+	{{ content }}
+	<div>
+		{{ obj.name }}
+	</div>
+	<div>
+		{% if name == 'Tom' %}
+		<h1>我是Tom</h1>
+		{% endif %}
+	</div>
+
+	<div>
+		{% if name == 'Tom' %}
+		<h1>是帅哥</h1>
+		{% else %}
+		<h1>你是谁</h1>
+		{% endif %}
+	</div>
+	<div>
+		{% for key,val in arr %}
+		<h1>{{ val }}</h1>	
+		{% endfor %}
+	</div>
+</body>
+</html>

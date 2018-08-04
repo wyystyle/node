@@ -2,8 +2,13 @@ const express = require('express');
 const Userrouter = require('./routers/user.js')
 const app = express();
 
-app.use(express.static('public'));
-app.use("./user",Userrouter)
+
+
+
+app.use(express.static('public'));  //静态资源加载
+// app.use('/static',express.static('public')); //虚拟路径
+
+app.use("/user",Userrouter);
 
 
 
